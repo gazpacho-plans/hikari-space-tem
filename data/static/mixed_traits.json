@@ -1,0 +1,357 @@
+[
+  {
+    "name": "Criminal",
+    "effects": {
+      "monthly_money_income": 1,
+      "security_modifier": {"value": -1, "condition": "unrest <= 1"},
+      "grants": "Can purchase Criminal Orgs"
+    },
+    "description": "Involved in illegal activities."
+  },
+  {
+    "name": "Sociopath",
+    "effects": {
+      "persuasion": 1,
+      "loyalty": -3,
+      "grants": "Can purchase Sociopath Orgs"
+    },
+    "description": "Someone skilled at managing others in sole pursuit of his or her own satisfaction."
+  },
+  {
+    "name": "Firebrand",
+    "effects": {
+      "monthly_influence_income": 4,
+      "persuasion": [
+        {"value": 2, "condition": "education <= 6"},
+        {"value": 2, "condition": "cohesion <= 4"},
+        {"value": -1, "condition": "education >= 9"}
+      ],
+      "espionage_when_detected": -3
+    },
+    "description": "Appeals to the anger and fear of an uncritical audience."
+  },
+  {
+    "name": "Demagogue",
+    "effects": {
+      "monthly_influence_income": 5,
+      "persuasion": [
+        {"value": 3, "condition": "education <= 6"},
+        {"value": 3, "condition": "cohesion <= 4"},
+        {"value": -2, "condition": "education >= 9"}
+      ],
+      "espionage_when_detected": -6
+    },
+    "description": "An influential rabble-rouser who plays to the basest instincts of the public."
+  },
+  {
+    "name": "Rich",
+    "effects": {
+      "monthly_money_income": 10,
+      "monthly_influence_income": 1,
+      "persuasion": {"value": -1, "condition": "inequality <= 4"}
+    },
+    "description": "Has vast sums to call on, but disliked in egalitarian nations."
+  },
+  {
+    "name": "Billionaire",
+    "effects": {
+      "monthly_money_income": 40,
+      "monthly_influence_income": 2,
+      "persuasion": {"value": -2, "condition": "inequality <= 4"},
+      "espionage_when_detected": -1
+    },
+    "description": "Access to truly obscene amounts of money, to the point of unpopularity in nations that prize equality."
+  },
+  {
+    "name": "Eminent",
+    "effects": {
+      "monthly_influence_income": 6,
+      "espionage_when_detected": -2
+    },
+    "description": "Influential among elites, but well-known enough to sometimes attract unwanted attention."
+  },
+  {
+    "name": "Famous",
+    "effects": {
+      "monthly_influence_income": 9,
+      "espionage_when_detected": -4,
+      "prohibited": ["Go To Ground"]
+    },
+    "description": "Broadly known among elites and the public."
+  },
+  {
+    "name": "Megastar",
+    "effects": {
+      "monthly_influence_income": 12,
+      "espionage_when_detected": -8,
+      "prohibited": ["Go To Ground"]
+    },
+    "description": "A person of global renown, whose very movements make the news worldwide."
+  },
+  {
+    "name": "Opinion Leader",
+    "effects": {
+      "monthly_influence_income": 4,
+      "persuasion": {"value": 2, "condition": "government >= 6"},
+      "espionage_when_detected": -2
+    },
+    "description": "A respected commentator on public affairs, whose words reach many in free nations."
+  },
+  {
+    "name": "Media Darling",
+    "effects": {
+      "monthly_influence_income": 7,
+      "persuasion": {"value": 3, "condition": "government >= 6"},
+      "espionage_when_detected": -4
+    },
+    "description": "A popular speaker on media channels in free nations."
+  },
+  {
+    "name": "Elder Statesman",
+    "effects": {
+      "monthly_influence_income": 10,
+      "persuasion": {"value": 4, "condition": "government >= 6"},
+      "espionage_when_detected": -4
+    },
+    "description": "A widely respected and influential member of the political elite."
+  },
+  {
+    "name": "Averse",
+    "effects": {
+      "security": 1,
+      "prohibited": ["missions in nations with unrest >= 6"]
+    },
+    "description": "Flouts elite conventions, gaining influence among the masses at some personal risk."
+  },
+  {
+    "name": "Paranoid",
+    "effects": {
+      "security": 3,
+      "investigation": 2,
+      "espionage_when_detected": 2,
+      "persuasion": -2,
+      "prohibited": ["missions in nations with unrest >= 6", "Inspire"]
+    },
+    "description": "Sees enemies everywhere. Only right some of the time."
+  },
+  {
+    "name": "Ethical",
+    "effects": {
+      "persuasion": {"value": 1, "condition": "inequality <= 3.5"},
+      "loyalty_per_atrocity": -1,
+      "prohibited": ["Assassinate"]
+    },
+    "description": "A person of principle who believes not all means are justified by their end."
+  },
+  {
+    "name": "Pacifist",
+    "effects": {
+      "persuasion": {"value": 2, "condition": "education >= 9"},
+      "loyalty_per_atrocity": -2,
+      "command": -3,
+      "prohibited": ["Assassinate", "Assault Alien Asset", "Assault Enemy Space Asset", "Increase Unrest", "Sabotage Facilities"]
+    },
+    "description": "Personally refuses to take part in any violent action."
+  },
+  {
+    "name": "Academic",
+    "effects": {
+      "monthly_research_income": 10,
+      "command": -1,
+      "grants": ["Advise"]
+    },
+    "description": "Affiliated with a research university."
+  },
+  {
+    "name": "Awkward Genius",
+    "effects": {
+      "investigation": 2,
+      "science": 3,
+      "persuasion": -3,
+      "command": -3,
+      "prohibited": ["Inspire", "Public Campaign"]
+    },
+    "description": "Poor at recognizing social cues and working with others but able to conduct scientific investigations with unparalleled focus."
+  },
+  {
+    "name": "Brazen",
+    "effects": {
+      "persuasion": {"value": 1, "condition": "education <= 7"},
+      "security": -1
+    },
+    "description": "Flouts elite conventions, gaining influence among the masses at some personal risk."
+  },
+  {
+    "name": "Conspiracy Theorist",
+    "effects": {
+      "security": 1,
+      "investigation": 2,
+      "monthly_influence_income": -1,
+      "persuasion": -1,
+      "grants": ["Investigate Alien Activity"]
+    },
+    "description": "Sees connections between events that others will not. Occasionally right about them."
+  },
+  {
+    "name": "Corrupt",
+    "effects": {
+      "espionage": 2,
+      "monthly_influence_income": 3,
+      "monthly_money_income": -4,
+      "loyalty": -3
+    },
+    "description": "Influential, but will steal from us."
+  },
+  {
+    "name": "Cynic",
+    "effects": {
+      "investigation": 1,
+      "loyalty": -1,
+      "prohibited": ["Inspire"]
+    },
+    "description": "Difficult to fool, but expresses little hope for humanity's future."
+  },
+  {
+    "name": "Demanding",
+    "effects": {
+      "administration": 2,
+      "command": 1,
+      "loyalty_per_critical_failure": -1
+    },
+    "description": "Does not tolerate failure from anyone."
+  },
+  {
+    "name": "Expert",
+    "effects": {
+      "monthly_influence_income": 2,
+      "monthly_research_income": 5,
+      "persuasion": 1,
+      "science": 1,
+      "security": -1,
+      "espionage_when_detected": -1,
+      "grants": ["Advise"]
+    },
+    "description": "An oft-quoted speaker on topics in a certain realm of expertise."
+  },
+  {
+    "name": "Family Ties",
+    "effects": {
+      "persuasion_in_home_nation": 1,
+      "security_in_home_nation": 1,
+      "loyalty_loss": "Loses loyalty if home nation is hit with a Strategic Nuclear Barrage"
+    },
+    "description": "Feels a strong connection to their homeland and has family there."
+  },
+  {
+    "name": "Lone Wolf",
+    "effects": {
+      "espionage": 2,
+      "command": -1,
+      "administration": -1,
+      "prohibited": ["Inspire"]
+    },
+    "description": "Does not work well with others, but skilled at secretive activity."
+  },
+  {
+    "name": "Martyr",
+    "effects": {
+      "persuasion": 1,
+      "security": -1,
+      "effect_on_death": "If it dies violently owner receives Public Campaign effects in every nation",
+      "grants": ["Inspire"]
+    },
+    "description": "A violent death will draw millions to their cause."
+  },
+  {
+    "name": "National Hero",
+    "effects": {
+      "persuasion_in_home_nation": 4,
+      "security_in_home_nation": -1
+    },
+    "description": "Well known and influential in his or her home nation."
+  },
+  {
+    "name": "Oligarch",
+    "effects": {
+      "monthly_money_income": 3,
+      "monthly_influence_income": 4,
+      "persuasion": [
+        {"value": 1, "condition": "inequality > 4"},
+        {"value": -1, "condition": "inequality <= 4"}
+      ]
+    },
+    "description": "Has gained riches via political power; influential in nations with high inequality."
+  },
+  {
+    "name": "Suspicious",
+    "effects": {
+      "espionage": 2,
+      "security": 2,
+      "investigation": 2,
+      "investigation_when_detecting": 2,
+      "espionage_when_detected": 1,
+      "apparent_loyalty": -2,
+      "prohibited": ["Inspire"]
+    },
+    "description": "Naturally inclined to distrust others."
+  },
+  {
+    "name": "Technocrat",
+    "effects": {
+      "monthly_influence_income": 2,
+      "monthly_research_income": 3,
+      "administration": 3,
+      "science": 1,
+      "social_science_research": 0.05,
+      "persuasion": {"value": -1, "condition": "education <= 8"},
+      "grants": ["Advise"]
+    },
+    "description": "Believes that social relations are simply an engineering problem."
+  },
+  {
+    "name": "Furtive",
+    "effects": {
+      "espionage": 2,
+      "persuasion": -1,
+      "administration": -1,
+      "apparent_loyalty": 2,
+      "prohibited": ["Inspire"]
+    },
+    "description": "A secretive and often negative personality."
+  },
+  {
+    "name": "Inscrutable",
+    "effects": {
+      "apparent_loyalty": 12,
+      "prohibited": ["Inspire"]
+    },
+    "description": "Never seems to express a strong opinion."
+  },
+  {
+    "name": "Pollyanna",
+    "effects": {
+      "apparent_loyalty": 25
+    },
+    "description": "Always expresses a sunny outlook on events, regardless of their reality."
+  },
+  {
+    "name": "Extremist",
+    "effects": {
+      "loyalty": 3,
+      "investigation": 1,
+      "persuasion": {"value": -1, "condition": "education >= 8"},
+      "apparent_loyalty": 3
+    },
+    "description": "Utterly devoted to the cause and holds those who aren't in low regard."
+  },
+  {
+    "name": "Fanatic",
+    "effects": {
+      "loyalty": 5,
+      "persuasion": {"value": 2, "condition": "education <= 6"},
+      "investigation": -1,
+      "apparent_loyalty": 5
+    },
+    "description": "An absolute true believer who lacks an understanding of certain subtleties of dealing with the world."
+  }
+]

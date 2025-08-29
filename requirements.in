@@ -1,0 +1,8 @@
+hikari
+hikari-lightbulb
+hikari-miru
+SQLAlchemy
+aiosqlite
+alembic
+python-dotenv
+watchfiles

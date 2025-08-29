@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Inflexible",
+    "remove_cost": {"xp": 40},
+    "description": "Slow to learn new things."
+  },
+  {
+    "name": "Declining",
+    "remove_cost": {"permanent": true},
+    "description": "Age is taking its toll."
+  },
+  {
+    "name": "Careless",
+    "remove_cost": {"xp": 20},
+    "description": "Someone who doesn't take personal security terribly seriously."
+  },
+  {
+    "name": "Delinquent",
+    "remove_cost": {"money": 300000},
+    "description": "Refuses to honour outstanding debts, gaining a reputation for untrustworthiness."
+  },
+  {
+    "name": "Anxious",
+    "remove_cost": {"xp": 20},
+    "description": "Not ready to die for the cause."
+  },
+  {
+    "name": "Insecure",
+    "remove_cost": {"xp": 20},
+    "description": "Is troubled by personal failure."
+  },
+  {
+    "name": "Loss Averse",
+    "remove_cost": {"xp": 20},
+    "description": "Haunted by defeat."
+  },
+  {
+    "name": "Addict",
+    "remove_cost": {"xp": 40},
+    "description": "Addicted to an illicit substance and willing to go to any length to acquire it."
+  },
+  {
+    "name": "Earthbound",
+    "remove_cost": {"xp": 20},
+    "description": "This person refuses to travel to space."
+  },
+  {
+    "name": "Extorted",
+    "remove_cost": {"money": 300000},
+    "description": "Feels that they have been taken advantage of financially by our faction."
+  },
+  {
+    "name": "Indebted",
+    "remove_cost": {"money": 150000},
+    "description": "Owes a very large sum of money to creditors, reducing their credibility."
+  },
+  {
+    "name": "Indulgent",
+    "remove_cost": {"xp": 20},
+    "description": "Spends lots of money on personal gratification."
+  },
+  {
+    "name": "Marked",
+    "remove_cost": {"xp": 50, "money": 1000, "influence": 500, "operations": 100},
+    "description": "This councilor has done something public, and terrible, and is the target of surveillance."
+  },
+  {
+    "name": "Pariah",
+    "remove_cost": {"permanent": true},
+    "description": "Strongly disliked in his or her home nation, this person fares better in foreign lands."
+  },
+  {
+    "name": "Enemy of the State",
+    "remove_cost": {"influence": 20},
+    "description": "Faces imprisonment or execution in his or her home nation."
+  },
+  {
+    "name": "Non Grata",
+    "remove_cost": {"xp": 20, "money": 100, "influence": 20},
+    "description": "Faces imprisonment or execution in rivals of his or her home nation."
+  }
+]

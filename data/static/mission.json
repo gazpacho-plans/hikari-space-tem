@@ -1,0 +1,317 @@
+{
+  "turn_rules": {
+    "phases": [
+      "Phase 1: Commitment & Intel",
+      "Mid-Turn: Reaction Window",
+      "Phase 2: Action & Reaction"
+    ],
+    "investigate_resolution": "All Investigate missions resolve simultaneously at the end of Phase 1.",
+    "cancellation_rule": "During the Mid-Turn Reaction Window, players may cancel previously assigned Committed Missions; resources spent are lost.",
+    "resolution_timing": "At the end of Phase 2, all remaining Committed Missions and all Quick Reaction missions resolve simultaneously.",
+    "general_formula": "(Relevant_Attribute + d10_Roll + Modifiers)",
+    "success_tiers": {
+      "critical_success": "Roll exceeds DC by 10 or more; grants a significant bonus defined per mission.",
+      "success": "Roll meets or exceeds DC.",
+      "failure": "Roll is below DC.",
+      "critical_failure": "Natural 1 on d10; negative consequence defined per mission."
+    }
+  },
+  "missions": {
+    "Public Campaign": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 50, "Influence": 10, "Operations": 0, "Boost": 0 },
+      "check": {
+        "type": "vs_dc",
+        "attacker_formula": ["Persuasion", "d10"],
+        "defender": { "mode": "static_dc", "value": "Nation.BaseDC" },
+        "modifiers": []
+      },
+      "outcomes": {
+        "critical_success": "Public Opinion increases by a large amount (e.g., +15). Faction receives a 'Golden Opportunity' token.",
+        "success": "Public Opinion increases by a standard amount (e.g., +5).",
+        "failure": "No change; resources are lost.",
+        "critical_failure": "Public Opinion for your faction decreases; possible negative trait gain."
+      },
+      "authorized_professions": [
+        "Activist",
+        "Celebrity",
+        "Diplomat",
+        "Evangelist",
+        "Governor",
+        "Journalist",
+        "Professor"
+      ],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Control Nation": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 0, "Influence": 30, "Operations": 25, "Boost": 0 },
+      "check": {
+        "type": "opposed_or_dc",
+        "attacker_formula": ["Command", "PublicOpinionBonus", "d10"],
+        "defender_options": [
+          { "mode": "opposed", "defender_formula": ["Security", "d10"] },
+          { "mode": "static_dc", "value": "Nation.StaticDC" }
+        ],
+        "modifiers": []
+      },
+      "outcomes": {
+        "critical_success": "Seize one Control Point. Rival faction loses Public Opinion in the nation.",
+        "success": "Seize one Control Point.",
+        "failure": "Mission fails; attacker is revealed.",
+        "critical_failure": "Mission fails; attacker is Detained for one turn and their faction loses Public Opinion."
+      },
+      "authorized_professions": ["Governor", "Kingpin", "Officer", "Rebel"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Hostile Takeover": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 100, "Influence": 0, "Operations": 20, "Boost": 0 },
+      "check": {
+        "type": "opposed_or_dc",
+        "attacker_formula": ["Espionage", "d10"],
+        "defender_options": [
+          { "mode": "opposed", "defender_formula": ["Security", "d10"] },
+          { "mode": "static_dc", "value": "Org.StaticDC" }
+        ],
+        "modifiers": []
+      },
+      "outcomes": {
+        "critical_success": "Seize the Organization. Defending Councillor is Detained.",
+        "success": "Seize the Organization.",
+        "failure": "Mission fails; attacker is revealed.",
+        "critical_failure": "Mission fails; attacker is Detained and gains the Marked trait."
+      },
+      "authorized_professions": ["Executive", "Fixer", "Hacker", "Kingpin", "Spy", "Tycoon"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Investigate Councillor": {
+      "aliases": ["Investigate"],
+      "phase": "Phase 1",
+      "type": "Quick Intel",
+      "cost": { "Money": 0, "Influence": 10, "Operations": 0, "Boost": 0 },
+      "check": {
+        "type": "opposed",
+        "attacker_formula": ["Investigation", "d10"],
+        "defender_formula": ["Security", "d10"],
+        "modifiers": []
+      },
+      "outcomes": {
+        "critical_success": "Learn target's Profession, all Attributes, all Traits, and their current-turn Org income.",
+        "success": "Learn the Committed Mission the target is currently assigned to this turn.",
+        "failure": "Learn nothing; target senses they are being watched.",
+        "critical_failure": "Target is notified of exactly who investigated them."
+      },
+      "authorized_professions": ["Hacker", "Inspector", "Journalist", "Local Agent", "Spy"],
+      "prerequisites": [],
+      "notes": ["Resolves with other Investigate missions at end of Phase 1."]
+    },
+    "Protect Target": {
+      "aliases": [],
+      "phase": "Phase 2",
+      "type": "Reaction",
+      "cost": { "Money": 0, "Influence": 5, "Operations": 5, "Boost": 0 },
+      "check": {
+        "type": "replacement_defense",
+        "defender_formula": ["Security", "d10"],
+        "modifiers": []
+      },
+      "outcomes": {
+        "success": "If the protected asset is targeted by a hostile mission this turn, use the protector's Security + d10 in place of the asset's normal DC.",
+        "failure": "No effect if the asset is not targeted this turn."
+      },
+      "authorized_professions": ["Captain", "Fixer", "Inspector", "Officer", "Operative"],
+      "prerequisites": [],
+      "notes": ["Protects one asset (controlled CP, controlled Org, or Councillor) for one turn."]
+    },
+    "Go to Hiding": {
+      "aliases": ["Go to Ground", "Go to Hide"],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 0, "Influence": 0, "Operations": 5, "Boost": 0 },
+      "check": { "type": "automatic" },
+      "outcomes": {
+        "success": "Councillor is hidden this turn. Any hostile mission targeting this Councillor that relies on an opposed Investigation or Espionage roll takes a -10 penalty.",
+        "failure": "N/A"
+      },
+      "authorized_professions": ["Any"],
+      "prerequisites": [],
+      "notes": ["Councillor cannot perform other actions this turn."]
+    },
+    "Turn Councillor": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 0, "Influence": 75, "Operations": 100, "Boost": 0 },
+      "check": {
+        "type": "opposed",
+        "attacker_formula": ["Espionage", "IdeologicalModifier", "d10"],
+        "defender_formula": ["Security", 3, "d10"],
+        "modifiers": [
+          { "name": "Ideological Modifier vs opposite faction", "value": -3 },
+          { "name": "Ideological Modifier vs adjacent opposing axis", "value": -1 }
+        ]
+      },
+      "outcomes": {
+        "success": "Target is Turned. At the start of the next turn's Intel Phase, receive a full, accurate report of all missions assigned by the target's entire faction.",
+        "failure": "Attacking Councillor is immediately Detained for one turn.",
+        "critical_failure": "Target's faction receives a free Investigate Councillor (Critical Success outcome) against any one Councillor of the attacker's choice."
+      },
+      "authorized_professions": ["Kingpin", "Spy", "Fixer"],
+      "prerequisites": [],
+      "notes": ["High-difficulty opposed roll."]
+    },
+    "Manage Project": {
+      "aliases": ["Advise"],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 25, "Influence": 0, "Operations": 0, "Boost": 0 },
+      "check": {
+        "type": "vs_dc",
+        "attacker_formula": ["Science", "d10"],
+        "defender": { "mode": "static_dc", "value": 12 },
+        "modifiers": []
+      },
+      "outcomes": {
+        "critical_success": "Apply a 2.5x multiplier to faction's total passive Research generation for this turn (3.0x if on-station at a Hab).",
+        "success": "Apply a 1.5x multiplier to faction's total passive Research generation for this turn (2.0x if on-station at a Hab).",
+        "failure": "No multiplier applied.",
+        "critical_failure": "A small amount of accumulated research on the project is lost."
+      },
+      "authorized_professions": ["Scientist", "Professor", "Agency Director", "Executive"],
+      "prerequisites": [],
+      "notes": ["If performed on-station at a Hab, add +0.5x to the multiplier at each success tier."]
+    },
+    "Investigate Alien Activity": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 50, "Influence": 0, "Operations": 20, "Boost": 0 },
+      "check": {
+        "type": "vs_dc",
+        "attacker_formula": ["Science", "Investigation", "d10"],
+        "defender": { "mode": "static_dc", "value": "GlobalProject.DC" },
+        "modifiers": []
+      },
+      "outcomes": {
+        "success": "Add a large flat amount of Research (e.g., +50) to the targeted Global Project.",
+        "failure": "Mission fails; resources are lost.",
+        "critical_failure": "Mission fails; the leading Councillor is Detained for one turn."
+      },
+      "authorized_professions": ["Scientist", "Professor", "Test Pilot"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Sabotage Project": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 75, "Influence": 0, "Operations": 50, "Boost": 0 },
+      "check": {
+        "type": "opposed",
+        "attacker_formula": ["Science", "d10"],
+        "defender_formula": ["Security", "d10"],
+        "defender_context": "Defender is the target faction's Project Manager.",
+        "modifiers": []
+      },
+      "outcomes": {
+        "success": "A significant amount of Research is destroyed from the target's project. Attacker is revealed.",
+        "failure": "Attempt is thwarted. Attacker is revealed.",
+        "critical_failure": "Attempt thwarted; attacking Councillor is Detained for one turn."
+      },
+      "authorized_professions": ["Operative", "Rebel", "Scientist"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Steal Project": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 100, "Influence": 0, "Operations": 25, "Boost": 0 },
+      "check": {
+        "type": "opposed",
+        "attacker_formula": ["Espionage", "d10"],
+        "defender_formula": ["Security", "d10"],
+        "defender_context": "Defender is the target faction's Project Manager.",
+        "modifiers": []
+      },
+      "outcomes": {
+        "success": "A portion of Research is stolen from the target's project and added to your active project. Attacker is revealed.",
+        "failure": "Attempt is thwarted. Attacker is revealed.",
+        "critical_failure": "Attempt thwarted; attacking Councillor gains the Marked negative trait."
+      },
+      "authorized_professions": ["Hacker", "Spy", "Tech Mogul"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Launch Hab": {
+      "aliases": ["Launch Habitat"],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 200, "Influence": 0, "Operations": 100, "Boost": 50 },
+      "prerequisites": ["Faction Research: Orbital Core"],
+      "check": {
+        "type": "vs_dc",
+        "attacker_formula": ["Science", "Administration", "d10"],
+        "defender": { "mode": "static_dc", "value": 18 },
+        "modifiers": []
+      },
+      "outcomes": {
+        "success": "A new Hab Core is successfully established in the target orbit.",
+        "failure": "Launch fails; all resources are lost.",
+        "critical_failure": "Catastrophic failure; all resources lost and the Faction Project to build the Hab must be researched again."
+      },
+      "authorized_professions": ["Scientist", "Executive", "Test Pilot", "Agency Director"],
+      "notes": []
+    },
+    "Go to Orbit": {
+      "aliases": [],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 10, "Influence": 0, "Operations": 0, "Boost": 1 },
+      "check": { "type": "automatic" },
+      "outcomes": {
+        "success": "Councillor's location changes from Earth to the target Hab. Considered on-station starting next turn.",
+        "failure": "N/A"
+      },
+      "authorized_professions": ["Any"],
+      "prerequisites": [],
+      "notes": []
+    },
+    "Execute Transfer": {
+      "aliases": ["Plan Transfer", "Commit Transfer"],
+      "phase": "Phase 1",
+      "type": "Committed",
+      "cost": { "Money": 0, "Influence": 0, "Operations": 0, "Boost": 0 },
+      "check": {
+        "type": "validation",
+        "validation_rules": [
+          "Determine Effective Ship Performance from Ship Class and Faction Propulsion Tech.",
+          "Calculate transfer Δv cost and travel time for High-Thrust, Hohmann, or Gravity Assist as applicable.",
+          "Validate Effective Δv Budget is sufficient for the chosen maneuver."
+        ]
+      },
+      "outcomes": {
+        "success": "Transfer is queued per plan; ship begins maneuver per calculated travel time.",
+        "failure": "If validation fails (insufficient Δv), cannot commit."
+      },
+      "authorized_professions": ["Captain", "Test Pilot", "Scientist", "Agency Director"],
+      "prerequisites": ["Valid ship_id and route; sufficient Δv budget"],
+      "notes": [
+        "Inputs: start_location, destination, optional flyby_location, ship_id, departure_month.",
+        "Costs in space resources and time are handled by the transfer planner and ship systems, not a dice check."
+      ]
+    }
+  }
+}
+
+
